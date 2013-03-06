@@ -13,6 +13,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'Lokaltog/vim-powerline'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -20,4 +21,8 @@ map <C-n> :NERDTreeToggle<CR>
 " Syntastic
 let g:syntastic_cpp_check_header = 1
 
-
+" Powerline
+set laststatus=2
+set encoding=utf-8
+set t_Co=256
+let g:Powerline_symbols='unicode'
