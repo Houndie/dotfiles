@@ -28,6 +28,8 @@ set t_Co=256
 let g:Powerline_symbols='unicode'
 
 " Other
+filetype on
+syntax on
 set smartindent
 set tabstop=3
 set shiftwidth=3
