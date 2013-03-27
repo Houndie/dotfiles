@@ -12,14 +12,14 @@ call vundle#rc()
 " Bundles
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
 
 " Syntastic
-let g:syntastic_cpp_check_header = 1
+" let g:syntastic_cpp_check_header = 1
 
 " Powerline
 set laststatus=2
