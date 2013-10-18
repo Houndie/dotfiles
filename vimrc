@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'kien/ctrlp.vim'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
