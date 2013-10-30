@@ -1,5 +1,6 @@
 #Custom stuff to load
 export PACMAN=pacmatic
+export EDITOR=vim
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
