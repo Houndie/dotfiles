@@ -2,6 +2,8 @@
 export PACMAN=pacmatic
 export EDITOR=vim
 
+alias tmux="tmux -2"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -42,8 +44,9 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras dircycle nyan vi-mode)
+plugins=(git git-extras dircycle autojump vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+alias hisg="history | grep"
