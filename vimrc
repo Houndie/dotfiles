@@ -17,6 +17,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'octol/vim-cpp-enhanced-highlight'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
