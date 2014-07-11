@@ -11,13 +11,13 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " Bundles
-Bundle 'gmarik/vundle'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/DoxygenToolkit.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'octol/vim-cpp-enhanced-highlight'
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'octol/vim-cpp-enhanced-highlight'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
