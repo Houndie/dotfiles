@@ -20,7 +20,9 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'valloric/youcompleteme'
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -42,4 +44,5 @@ map <C-u> :make!<CR>
 " DoxygenToolkit.vim
 let g:DoxygenToolkit_briefTag_pre = ""
 
+"Ctrl-P
 let g:ctrlp_extensions = ['tag']
