@@ -43,6 +43,10 @@ map <C-u> :make!<CR>
 
 " DoxygenToolkit.vim
 let g:DoxygenToolkit_briefTag_pre = ""
+let g:DoxygenToolkit_compactOneLineDoc = "yes"
+"let g:DoxygenToolkit_commentType = "C++"
+"let g:DoxygenToolkit_interCommentTag = " * "
+let g:DoxygenToolkit_interCommentBlock = " * "
 
 "Ctrl-P
 let g:ctrlp_extensions = ['tag']
