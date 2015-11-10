@@ -1,6 +1,6 @@
 URxvt.foreground: #DDEEDD
 URxvt.background: #1C1C1C
-URxvt.transparent: false
+URxvt.transparent: true
 URxvt.shading: 20
 !URxvt.font:  xft:Terminus:pixelsize=12,xft:Insonsolata\ for\ Powerline:pixelsize=12
 !URxvt.font:  xft:Consolas\ for\ Powerline:size=8
