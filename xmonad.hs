@@ -11,6 +11,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Layout.Spacing
+import XMonad.Hooks.DynamicLog
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -254,7 +255,7 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -284,3 +285,19 @@ defaults = defaultConfig {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
+
+myBar = "xmobar"
+
+layoutNameMap :: String -> String
+layoutNameMap "Spacing 10 Tall" = "Tall"
+layoutNameMap "Spacing 10 Mirror Tall" = "Wide"
+layoutNameMap "Spacing 10 Full" = "Full"
+layoutNameMap other = other
+
+myPP = defaultPP { 
+      -- define current workspace tag
+      ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
+      ppLayout = layoutNameMap
+   }
+
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
