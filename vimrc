@@ -7,22 +7,24 @@ set nocompatible
 set formatoptions=tcr
 
 " Vundle
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Bundles
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'vim-scripts/DoxygenToolkit.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-surround'
 Plugin 'majutsushi/tagbar'
-"Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'valloric/youcompleteme'
+Plugin 'nanotech/jellybeans.vim'
+
+call vundle#end()
 
 " Nerdtree
 map <C-n> :NERDTreeToggle<CR>
@@ -50,3 +52,5 @@ let g:DoxygenToolkit_interCommentBlock = " * "
 
 "Ctrl-P
 let g:ctrlp_extensions = ['tag']
+
+color jellybeans
