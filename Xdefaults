@@ -2,6 +2,7 @@ URxvt.foreground: #DDEEDD
 URxvt.background: #1C1C1C
 URxvt.transparent: true
 URxvt.shading: 20
+URxvt.scrollBar: false
 !URxvt.font:  xft:Terminus:pixelsize=12,xft:Insonsolata\ for\ Powerline:pixelsize=12
 !URxvt.font:  xft:Consolas\ for\ Powerline:size=8
 !URxvt.font:  xft:Inconsolata\ for\ Powerline:pixelsize=9
