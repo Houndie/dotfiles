@@ -10,6 +10,7 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import XMonad.Layout.Spacing
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -181,8 +182,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = spacing spacingPixels $ tiled ||| Mirror tiled ||| Full
   where
+     -- Number of pixels between each window
+     spacingPixels = 10
+
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
 
