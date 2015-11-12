@@ -286,7 +286,7 @@ defaults = defaultConfig {
         startupHook        = myStartupHook
     }
 
-myBar = "xmobar"
+myBar = "xmobar -f xft:Dina:size=8"
 
 layoutNameMap :: String -> String
 layoutNameMap "Spacing 10 Tall" = "Tall"
