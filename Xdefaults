@@ -37,6 +37,8 @@ URxvt.color14: #A3BABF
 URxvt.color7: #DDEEDD
 URxvt.color15: #6C887A
 
+URxvt.urgentOnBell: true
+
 
 ! Solarized color scheme for the X Window System
 !

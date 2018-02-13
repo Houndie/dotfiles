@@ -53,4 +53,6 @@ let g:DoxygenToolkit_interCommentBlock = " * "
 "Ctrl-P
 let g:ctrlp_extensions = ['tag']
 
+let g:ycm_always_populate_location_list = 1
+
 color jellybeans

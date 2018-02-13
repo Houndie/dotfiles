@@ -12,6 +12,9 @@ import Data.Monoid
 import System.Exit
 import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.UrgencyHook
+import XMonad.Util.Run
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -235,11 +238,6 @@ myEventHook = mempty
 ------------------------------------------------------------------------
 -- Status bars and logging
 
--- Perform an arbitrary action on each internal state change or X event.
--- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook = return ()
-
 ------------------------------------------------------------------------
 -- Startup hook
 
@@ -255,15 +253,9 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey defaults
-
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
-defaults = defaultConfig {
+main = do
+   xmproc <- spawnPipe "xmobar -f xft:Dina:size=8"
+   xmonad $ withUrgencyHook NoUrgencyHook def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -279,14 +271,55 @@ defaults = defaultConfig {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
+        layoutHook         = avoidStruts $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = dynamicLogWithPP $ def {
+           -- define current workspace tag
+           ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
+           ppLayout = layoutNameMap,
+           ppUrgent = xmobarColor "yellow" "red" . xmobarStrip,
+           ppOutput = hPutStrLn xmproc
+        },
         startupHook        = myStartupHook
     }
 
-myBar = "xmobar -f xft:Dina:size=8"
+-- A structure containing your configuration settings, overriding
+-- fields in the default config. Any you don't override, will
+-- use the defaults defined in xmonad/XMonad/Config.hs
+--
+-- No need to modify this.
+--
+--defaults = def {
+      -- simple stuff
+--        terminal           = myTerminal,
+--        focusFollowsMouse  = myFocusFollowsMouse,
+--        clickJustFocuses   = myClickJustFocuses,
+--        borderWidth        = myBorderWidth,
+--        modMask            = myModMask,
+--        workspaces         = myWorkspaces,
+--        normalBorderColor  = myNormalBorderColor,
+--        focusedBorderColor = myFocusedBorderColor,
+
+      -- key bindings
+--        keys               = myKeys,
+--        mouseBindings      = myMouseBindings,
+
+      -- hooks, layouts
+--        layoutHook         = myLayout,
+--        manageHook         = myManageHook,
+--        handleEventHook    = myEventHook,
+--        logHook            = dynamicLogWithPP $ def {
+           -- define current workspace tag
+--           ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
+--           ppLayout = layoutNameMap,
+--           ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
+--           ppOutput = xmproc
+--        }
+--        startupHook        = myStartupHook
+--    }
+
+--myBar = "xmobar -f xft:Dina:size=8"
 
 layoutNameMap :: String -> String
 layoutNameMap "Spacing 10 Tall" = "Tall"
@@ -294,10 +327,12 @@ layoutNameMap "Spacing 10 Mirror Tall" = "Wide"
 layoutNameMap "Spacing 10 Full" = "Full"
 layoutNameMap other = other
 
-myPP = defaultPP { 
+--myPP = def { 
       -- define current workspace tag
-      ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
-      ppLayout = layoutNameMap
-   }
+--      ppCurrent = xmobarColor "#429942" "" . wrap "<" ">",
+--      ppLayout = layoutNameMap,
+--      ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
+--      ppOutput = 
+--   }
 
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+--toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
