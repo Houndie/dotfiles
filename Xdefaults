@@ -8,7 +8,7 @@ URxvt.scrollBar: false
 !URxvt.font:  xft:Inconsolata\ for\ Powerline:pixelsize=9
 !URxvt.font:  xft:Terminus
 !URxvt.font:  xft:Dina:size=8
-URxvt.font:  xft:Dina:size=8,xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=8
+URxvt.font:  xft:Consolas:size=10,xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=10
 !URxvt.font: xft:DejaVuSansMono:size=8
 !URxvt*font: xft:Consolas:style=Regular:pixelsize=12:antialias=true
 
