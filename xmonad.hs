@@ -10,11 +10,16 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import System.Process
+import System.IO
+import Text.Regex
 import XMonad.Layout.Spacing
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Util.Dzen
 import XMonad.Util.Run
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -41,7 +46,8 @@ myBorderWidth   = 3
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+--myModMask       = mod1Mask
+myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -135,6 +141,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     --, ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+    , ((0, xF86XK_AudioLowerVolume ), spawn "pactl set-sink-volume 0 -5%")
+    , ((0, xF86XK_AudioRaiseVolume ), spawn "pactl set-sink-volume 0 +5%")
+    , ((0, xF86XK_AudioMute        ), spawn "pactl set-sink-mute 0 toggle")
+    , ((0, xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 8")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 8")
+    , ((modm,  xK_Escape           ), spawn "gnome-screensaver-command -l")
     ]
     ++
 
@@ -254,8 +266,8 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-   xmproc <- spawnPipe "xmobar -f xft:Dina:size=8"
-   xmonad $ withUrgencyHook NoUrgencyHook def {
+   xmproc <- spawnPipe "xmobar -f xft:Dina:size=8 ~/.xmobarrc"
+   xmonad $ withUrgencyHook NoUrgencyHook $ docks def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
