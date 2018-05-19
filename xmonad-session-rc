@@ -1,0 +1,6 @@
+~/.fehbg
+compton -b --backend glx --vsync opengl
+xsetroot -cursor_name left_ptr
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 15 --tint 0x000000 --transparent true --alpha 0 &
+gnome-screensaver &
+nm-applet --sm-disable &
