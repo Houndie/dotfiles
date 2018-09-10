@@ -1,6 +1,14 @@
-~/.fehbg
-compton -b --backend glx --vsync opengl
+compton &
 xsetroot -cursor_name left_ptr
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --height 15 --tint 0x000000 --transparent true --alpha 0 &
-gnome-screensaver &
+~/.fehbg
 nm-applet --sm-disable &
+
+dbus-update-activation-environment --systemd DISPLAY
+eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+
+export GNOME_KEYRING_SOCKET
+export GNOME_KEYRING_PID
+export SSH_AUTH_SOCK
+
+xrdb -merge ~/.Xresources

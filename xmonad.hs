@@ -20,6 +20,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Util.Dzen
 import XMonad.Util.Run
 import Graphics.X11.ExtraTypes.XF86
+import XMonad.Layout.IndependentScreens
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -27,7 +28,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "urxvt"
+myTerminal      = "termite"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -46,8 +47,8 @@ myBorderWidth   = 3
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
---myModMask       = mod1Mask
-myModMask       = mod4Mask
+myModMask       = mod1Mask
+--myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -266,7 +267,7 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-   xmproc <- spawnPipe "xmobar -f xft:Dina:size=8 ~/.xmobarrc"
+   xmproc <- spawnPipe "xmobar -f xft:Consolas:size=8 ~/.xmobarrc"
    xmonad $ withUrgencyHook NoUrgencyHook $ docks def {
       -- simple stuff
         terminal           = myTerminal,

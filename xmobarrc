@@ -8,7 +8,7 @@ Config {
                 , Run Date "%a %b %_d %I:%M:%S" "date" 10
                 , Run Com "/bin/bash" ["/home/jabenze/.dotfiles/print-volume.sh"] "volume" 1 
                 , Run Com "/home/jabenze/.dotfiles/print-brightness.sh" [] "backlight" 1 
-                , Run BatteryP ["BAT0"] [ "--template" , "Batt: <acstatus>"
+                , Run BatteryP ["BAT0", "BAT1"] [ "--template" , "Batt: <acstatus>"
                               , "-L"      , "10"
                               , "-H"      , "75"
                               , "--high"     , "green"

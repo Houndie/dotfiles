@@ -39,6 +39,12 @@ URxvt.color15: #6C887A
 
 URxvt.urgentOnBell: true
 
+URxvt.perl-lib: /home/jabenze/.urxvt/ext
+URxvt.perl-ext-common: keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keyboard-select.clipboard: true
+
 
 ! Solarized color scheme for the X Window System
 !

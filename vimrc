@@ -4,6 +4,7 @@
 
 "Vim improved only
 set nocompatible
+filetype off
 set formatoptions=tcr
 
 " Vundle
@@ -23,6 +24,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'valloric/youcompleteme'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 
@@ -35,7 +37,7 @@ set encoding=utf-8
 set t_Co=256
 
 " Other
-filetype on
+filetype plugin indent on
 syntax on
 set smartindent
 set tabstop=3
@@ -53,5 +55,8 @@ let g:DoxygenToolkit_interCommentBlock = " * "
 let g:ctrlp_extensions = ['tag']
 
 let g:ycm_always_populate_location_list = 1
+
+let g:go_template_autocreate = 0
+let g:go_fmt_command = "goimports"
 
 color jellybeans
