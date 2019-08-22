@@ -25,6 +25,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'valloric/youcompleteme'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'fatih/vim-go'
+Plugin 'shime/vim-livedown'
 
 call vundle#end()
 
@@ -60,3 +61,5 @@ let g:go_template_autocreate = 0
 let g:go_fmt_command = "goimports"
 
 color jellybeans
+
+au FileType qf wincmd J

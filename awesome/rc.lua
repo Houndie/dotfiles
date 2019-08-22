@@ -10,9 +10,11 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
-local brightness = require("brightness")
+-- local brightness = require("brightness")
 local volume_control = require("volume-control")
 local battery_widget = require("battery-widget")
+local stdlib = require("posix.stdlib")
+local sharedtags = require("awesome-sharedtags")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -44,7 +46,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init("~/.config/awesome/themes/orange/theme.lua")
+beautiful.init("~/.config/awesome/themes/spiderverse/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "termite"
@@ -174,23 +176,36 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(wallpaper, s, false)
     end
 end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
-brightness_ctrl = brightness({})
+-- brightness_ctrl = brightness({})
 volume_ctrl = volume_control({})
 battery = battery_widget{}
+
+local tags = sharedtags({
+	{ name = "1", layout = awful.layout.layouts[1] },
+	{ name = "2", layout = awful.layout.layouts[1] },
+	{ name = "3", layout = awful.layout.layouts[1] },
+	{ name = "4", layout = awful.layout.layouts[1] },
+	{ name = "5", layout = awful.layout.layouts[1] },
+	{ name = "6", layout = awful.layout.layouts[1] },
+	{ name = "7", layout = awful.layout.layouts[1] },
+	{ name = "8", layout = awful.layout.layouts[1] },
+	{ name = "9", layout = awful.layout.layouts[1] }
+})
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+	 sharedtags.viewonly(tags[1], s)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -224,7 +239,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
 		  		battery,
 				volume_ctrl.widget,
-				brightness_ctrl.widget,
+				--brightness_ctrl.widget,
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
@@ -343,10 +358,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
-    awful.key({}, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 8") end,
-	           {description = "brightness up", group = "client"}),
-    awful.key({}, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 8") end,
-	           {description = "brightness down", group = "client"}),
+    --awful.key({}, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 8") end,
+	 --          {description = "brightness up", group = "client"}),
+    --awful.key({}, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 8") end,
+	 --          {description = "brightness down", group = "client"}),
 
     awful.key({}, "XF86AudioLowerVolume", function () volume_ctrl:down() end,
 	           {description = "volume down", group = "client"}),
@@ -412,9 +427,11 @@ for i = 1, 9 do
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
+                        --local tag = screen.tags[i]
+                        local tag = tags[i]
                         if tag then
-                           tag:view_only()
+                           --tag:view_only()
+									sharedtags.viewonly(tag, screen)
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
@@ -422,9 +439,11 @@ for i = 1, 9 do
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
+                      --local tag = screen.tags[i]
+                      local tag = tags[i]
                       if tag then
-                         awful.tag.viewtoggle(tag)
+                         --awful.tag.viewtoggle(tag)
+                         sharedtags.viewtoggle(tag, screen)
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
@@ -432,7 +451,8 @@ for i = 1, 9 do
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          --local tag = client.focus.screen.tags[i]
+								  local tag = tags[i]
                           if tag then
                               client.focus:move_to_tag(tag)
                           end
@@ -443,7 +463,8 @@ for i = 1, 9 do
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          --local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:toggle_tag(tag)
                           end
@@ -588,3 +609,12 @@ awful.util.spawn("compton -b --backend glx --vsync opengl")
 awful.util.spawn("gnome-screensaver")
 awful.util.spawn("nm-applet --sm-disable")
 awful.util.spawn("nextcloud")
+awful.spawn.easy_async("gnome-keyring-daemon --start --components=pkcs11,secrets,ssh", function(stdout, stderr, reason, exit_code) 
+	for line in string.gmatch(stdout, "[^\r\n]+") do
+		local arr = {}
+		for arg in string.gmatch(line, "[^=]+") do
+			arr[#arr + 1] = arg
+		end
+		stdlib.setenv(arr[1], arr[2])
+	end
+end)

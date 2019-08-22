@@ -1,0 +1,12 @@
+[submodule "awesome/battery-widget"]
+	path = awesome/battery-widget
+	url = https://github.com/deficient/battery-widget
+[submodule "awesome/volume-control"]
+	path = awesome/volume-control
+	url = https://github.com/deficient/volume-control
+[submodule "awesome/brightness"]
+	path = awesome/brightness
+	url = https://github.com/deficient/brightness
+[submodule "awesome/awesome-sharedtags"]
+	path = awesome/awesome-sharedtags
+	url = https://github.com/Drauthius/awesome-sharedtags
