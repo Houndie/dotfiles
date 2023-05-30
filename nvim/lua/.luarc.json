@@ -1,0 +1,40 @@
+{
+    "workspace.library": [
+        "/home/jabenze/.config/nvim",
+        "/etc/xdg/nvim",
+        "/home/jabenze/.local/share/nvim/site",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-path",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/mason.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/packer.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/ripgrep",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/vim-vsnip",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/vimspector",
+        "/usr/share/nvim/runtime",
+        "/usr/lib/nvim",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-buffer/after",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp-signature-help/after",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/after",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-path/after",
+        "/home/jabenze/.local/share/nvim/site/pack/packer/start/cmp-vsnip/after",
+        "/usr/share/vim/vimfiles",
+        "${3rd}/luassert/library",
+        "${3rd}/love2d/library"
+    ],
+    "runtime.special": {
+        "love.filesystem.load": "loadfile"
+    }
+}
