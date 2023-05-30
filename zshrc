@@ -1,5 +1,10 @@
 #Custom stuff to load
-export PACMAN=pacmatic
+export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg 2> /dev/null)
+export PATH=/home/jabenze/go/bin:/home/jabenze/flutter/bin:$PATH
+export CHROME_EXECUTABLE=google-chrome-stable
+
+ZSH=/usr/share/oh-my-zsh/
+ZSH_CUSTOM=/home/jabenze/.dotfiles/zsh_custom
 export EDITOR=vim
 
 alias tmux="tmux -2"
@@ -11,27 +16,11 @@ alias tmux="tmux -2"
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="frosted"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
@@ -44,9 +33,17 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras dircycle autojump vi-mode)
+plugins=(git git-extras dircycle vi-mode)
+
+ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
+if [[ ! -d $ZSH_CACHE_DIR ]]; then
+  mkdir $ZSH_CACHE_DIR
+fi
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias hisg="history | grep"
+alias fix_monitors='swaymsg "output HDMI-A-1 pos 0 0 res 1920x1200" && swaymsg "output DP-2 pos 1920 0 res 1920x1200"'
+
+alias ibazel="npx @bazel/ibazel"

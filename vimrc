@@ -21,7 +21,7 @@ set shiftwidth=3
 let g:ctrlp_extensions = ['tag']
 let g:ctrlp_user_command =  ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-let g:ycm_always_populate_location_list = 1
+"let g:ycm_always_populate_location_list = 1
 
 let g:go_template_autocreate = 0
 let g:go_fmt_command = "goimports"
@@ -31,3 +31,12 @@ let g:go_fmt_options = { 'goimports': '-local fs/' }
 autocmd FileType java setlocal shiftwidth=2 softtabstop=2 expandtab
 
 au FileType qf wincmd J
+
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_diagnostics_level = 2
+let g:go_highlight_diagnostic_errors = 1
+let g:go_highlight_diagnostic_warnings = 1
