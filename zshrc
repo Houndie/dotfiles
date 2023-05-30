@@ -5,9 +5,10 @@ export CHROME_EXECUTABLE=google-chrome-stable
 
 ZSH=/usr/share/oh-my-zsh/
 ZSH_CUSTOM=/home/jabenze/.dotfiles/zsh_custom
-export EDITOR=vim
+export EDITOR=nvim
 
 alias tmux="tmux -2"
+alias vi=nvim
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
