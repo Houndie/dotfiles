@@ -37,7 +37,7 @@ end)
 require("mason").setup()
 require("mason-lspconfig").setup {
 	-- rust_analyzer is automatically set up by rust-tools plugin
-	ensure_installed = { "gopls", "lua_ls" },
+	ensure_installed = { "gopls", "lua_ls", "tsserver" },
 }
 
 local rt = require("rust-tools")
@@ -74,6 +74,7 @@ lspconfig.lua_ls.setup {
 		},
 	},
 }
+lspconfig.tsserver.setup {}
 
 -- Lsp buttons
 vim.api.nvim_create_autocmd("LspAttach", {
