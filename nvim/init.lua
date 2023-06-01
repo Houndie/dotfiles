@@ -32,6 +32,14 @@ require('packer').startup(function(use)
 	use 'nvim-lua/plenary.nvim'
 	use 'BurntSushi/ripgrep'
 	use 'nvim-telescope/telescope.nvim'
+
+	use {
+		'nvim-neotest/neotest',
+		requires = {
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-neotest/neotest-go",
+		}
+	}
 end)
 
 require("mason").setup()
@@ -67,6 +75,7 @@ lspconfig.lua_ls.setup {
 			},
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true),
+				checkThirdParty = false,
 			},
 			telemetry = {
 				enable = false,
@@ -214,9 +223,25 @@ vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 vim.cmd [[colorscheme tokyonight-night]]
 
+-- Telescope (file finder)
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fr', builtin.lsp_references, {})
+
+-- Neotest
+local neotest = require("neotest")
+neotest.setup({
+	adapters = {
+		require("neotest-go")
+	},
+	output = {
+		open_on_run = true,
+	},
+})
+vim.keymap.set("n", "<leader>tt", function() neotest.run.run() end)
+vim.keymap.set("n", "<leader>tT", function() neotest.run.run(vim.fn.expand("%")) end)
+vim.keymap.set("n", "<leader>to", function() neotest.output.open({ enter = true }) end)
+vim.keymap.set("n", "<leader>ts", function() neotest.summary.open() end)

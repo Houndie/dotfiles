@@ -3,7 +3,6 @@ export $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg 2> /de
 export PATH=/home/jabenze/go/bin:/home/jabenze/flutter/bin:$PATH
 export CHROME_EXECUTABLE=google-chrome-stable
 
-ZSH=/usr/share/oh-my-zsh/
 ZSH_CUSTOM=/home/jabenze/.dotfiles/zsh_custom
 export EDITOR=nvim
 
