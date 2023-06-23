@@ -83,7 +83,9 @@ lspconfig.lua_ls.setup {
 		},
 	},
 }
-lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup {
+	root_dir = lspconfig.util.root_pattern("package.json", ".git")
+}
 
 -- Lsp buttons
 vim.api.nvim_create_autocmd("LspAttach", {
