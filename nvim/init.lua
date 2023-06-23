@@ -40,6 +40,8 @@ require('packer').startup(function(use)
 			"nvim-neotest/neotest-go",
 		}
 	}
+
+	use 'nvim-orgmode/orgmode'
 end)
 
 require("mason").setup()
@@ -171,13 +173,16 @@ cmp.setup({
 	},
 })
 
+local orgmode = require('orgmode')
+orgmode.setup_ts_grammar()
+
 -- Treesitter Plugin Setup
 require('nvim-treesitter.configs').setup {
-	ensure_installed = { "lua", "rust", "toml", "go" },
+	ensure_installed = { "lua", "rust", "toml", "go", "org" },
 	auto_install = true,
 	highlight = {
 		enable = true,
-		additional_vim_regex_highlighting = false,
+		additional_vim_regex_highlighting = { 'org' },
 		disable = { "starlark" },
 	},
 	ident = { enable = true },
@@ -186,6 +191,11 @@ require('nvim-treesitter.configs').setup {
 		extended_mode = true,
 		max_file_lines = nil,
 	}
+}
+
+orgmode.setup {
+	org_agenda_files = { '~/Nextcloud/org/*' },
+	org_default_notes_file = '~/Nextcloud/org/refile.org',
 }
 
 -- Treesitter folding
