@@ -193,9 +193,10 @@ require('nvim-treesitter.configs').setup {
 	}
 }
 
+local nextcloud_path = os.getenv("NEXTCLOUD")
 orgmode.setup {
-	org_agenda_files = { '~/Nextcloud/org/*' },
-	org_default_notes_file = '~/Nextcloud/org/refile.org',
+	org_agenda_files = { nextcloud_path .. '/org/*' },
+	org_default_notes_file = nextcloud_path .. '/org/refile.org',
 }
 
 -- Treesitter folding
